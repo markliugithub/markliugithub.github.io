@@ -16,6 +16,17 @@
         }
       });
 
+      // if('serviceWorker' in navigator) {
+      //   navigator.serviceWorker.register('service-worker.js');
+      // }
+
+      if (/Chrome\/(\d+\.\d+.\d+.\d+)/.test(navigator.userAgent)){
+        // Let's log a warning if the sample is not supposed to execute on this
+        // version of Chrome.
+        if (45 > parseInt(RegExp.$1)) {
+          ChromeSamples.setStatus('Warning! Keep in mind this sample has been tested with Chrome ' + 45 + '.');
+        }
+      }
   </script>
    <script src="scripts/main.js" defer></script>   
     
@@ -28,40 +39,21 @@
 
     <p>This web page is designed for test web ble for visible microCom reader</p> 
 
-    <script>
-      if('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('service-worker.js');
-      }
 
-      if (/Chrome\/(\d+\.\d+.\d+.\d+)/.test(navigator.userAgent)){
-        // Let's log a warning if the sample is not supposed to execute on this
-        // version of Chrome.
-        if (45 > parseInt(RegExp.$1)) {
-          ChromeSamples.setStatus('Warning! Keep in mind this sample has been tested with Chrome ' + 45 + '.');
-        }
-      }
-    </script>
-
-
-    <form>
-      <label for="allDevices">All Devices</label>
-      <input id="allDevices" type="checkbox">
-      <!-- <input id="service" type="text" size=17  placeholder="Bluetooth Service"> -->
-      <input id="name" type="text" size=17 placeholder="Device Name">
-      <input id="namePrefix" type="text" size=17 placeholder="Device Name Prefix">
-      <button>Get Bluetooth Device Info</button>
-    </form>
+    <p>
+      <button id="scanButton">scan</button>
+      <button id="connectButton" disabled>connect</button>
+      <button id="disconnectButton" disabled>disconnect</button>
+    </p>
     
     <p>
       <input id="sendData" type="text" placeholder="send text">
-      <button id="sendButton">Send</button>
-      <button id="sendWithEnter">Send with enter</button>
+      <button id="sendButton" disabled>Send</button>
+      <button id="sendWithEnter" disabled>Send with enter</button>
     </p>
 
 
-    <script>
 
-    </script>
 
     <h3>Live Output</h3>
     <div id="output" class="output">
